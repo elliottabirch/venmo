@@ -31,6 +31,7 @@ const headers = [
 let index = 0;
 
 hl(fileNames)
+  .filter(name => name !== '.DS_Store')
   .flatMap(fileName => hl(fs.createReadStream(path.join(__dirname, `_SOURCE/${fileName}`))
     .pipe(csvParse({ columns: headers, auto_parse: val => (!val ? undefined : val) }))).drop(1))
   .map(({ to, from, ...rest }) => Object.assign({ name: `${from}-${to}` }, rest))
