@@ -10,38 +10,36 @@ const columns = {
   date: 'Date',
   note: 'Memo',
   name: 'Name',
-  amount: 'Amount',
+  amount: 'amount',
   fee: 'fee',
   source: 'Account Type',
 };
-
-
 const headers = [
-  'id',
   'date',
-  'Type',
-  'Status',
+  'Time',
+  'TimeZone',
+  'name',
   'note',
-  'from',
-  'to',
+  'Status',
+  'Currency',
   'amount',
-  'fee',
-  'source',
-  'dest',
+  'Receipt ID',
+  'Balance',
 ];
 
-const index = 0;
+let index = 0;
 
 hl(fileNames)
   .filter(name => name !== '.DS_Store')
   .flatMap(fileName => hl(fs.createReadStream(path.join(__dirname, `_SOURCE/${fileName}`))
     .pipe(csvParse({ columns: headers, auto_parse: val => (!val ? undefined : val) }))).drop(1))
   // .filter(({ amount }) => +amount < 0)
-  .map(({ from, to, ...rest }) => ({ name: `${from}->${to}`, ...rest }))
-  .collect()
+  .map(({ name, type, ...rest }) => Object.assign({ source: 'Venmo' }, rest))
+  // .batch(9)
   .stopOnError(err => console.log(err))
-  // .doto(a => index++)
+  .doto(a => index++)
   .each((rows) => {
+    // console.log(rows);
     hl(rows).pipe(csvStringify({ columns, header: true }))
       .pipe(fs.createWriteStream(path.join(__dirname, `_OUTPUT/transactions-${index}.csv`)));
   });

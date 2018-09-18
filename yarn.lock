@@ -12,6 +12,12 @@ csv-stringify@^3.0.0:
   dependencies:
     lodash.get "~4.4.2"
 
+debug@^3.1.0:
+  version "3.1.0"
+  resolved "http://npm.ooapi.com:4873/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
+  dependencies:
+    ms "2.0.0"
+
 highland@^3.0.0-beta.3:
   version "3.0.0-beta.3"
   resolved "http://npm.ooapi.com:4873/highland/-/highland-3.0.0-beta.3.tgz#fe8048a4fb7c6cbbb2f1fda346487f49646b212d"
@@ -19,3 +25,18 @@ highland@^3.0.0-beta.3:
 lodash.get@~4.4.2:
   version "4.4.2"
   resolved "http://npm.ooapi.com:4873/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
+
+ms@2.0.0:
+  version "2.0.0"
+  resolved "http://npm.ooapi.com:4873/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
+
+node-ensure@^0.0.0:
+  version "0.0.0"
+  resolved "http://npm.ooapi.com:4873/node-ensure/-/node-ensure-0.0.0.tgz#ecae764150de99861ec5c810fd5d096b183932a7"
+
+pdf-parse@^1.0.8:
+  version "1.0.8"
+  resolved "http://npm.ooapi.com:4873/pdf-parse/-/pdf-parse-1.0.8.tgz#da50ad4a1eed17486c7ab304ab8b7c60b5788e39"
+  dependencies:
+    debug "^3.1.0"
+    node-ensure "^0.0.0"
