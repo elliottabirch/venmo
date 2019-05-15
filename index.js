@@ -17,6 +17,7 @@ const columns = {
 
 
 const headers = [
+  'username',
   'id',
   'date',
   'Type',
@@ -28,18 +29,28 @@ const headers = [
   'fee',
   'source',
   'dest',
+  'beg balance',
+  'Ending Balance',
+  'Statement Period Venmo Fees',
+  'Year to Date Venmo Fees',
+  'Disclaimer',
 ];
 
 const index = 0;
 
 hl(fileNames)
+  .doto((a) => {
+    console.log(__dirname, `_SOURCE/${a}`);
+  })
   .filter(name => name !== '.DS_Store')
   .flatMap(fileName => hl(fs.createReadStream(path.join(__dirname, `_SOURCE/${fileName}`))
     .pipe(csvParse({ columns: headers, auto_parse: val => (!val ? undefined : val) }))).drop(1))
-  // .filter(({ amount }) => +amount < 0)
+// .filter(({ amount }) => +amount < 0)
   .map(({ from, to, ...rest }) => ({ name: `${from}->${to}`, ...rest }))
   .collect()
-  .stopOnError(err => console.log(err))
+  .stopOnError((err) => {
+    console.log(err);
+  })
   // .doto(a => index++)
   .each((rows) => {
     hl(rows).pipe(csvStringify({ columns, header: true }))
