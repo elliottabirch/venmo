@@ -10,7 +10,7 @@ const columns = {
   date: 'date',
   memo: 'memo',
   account: 'account',
-  category: 'transfer account',
+  transfer: 'transfer account',
   outflow: 'withdrawal',
   inflow: 'deposit',
 
@@ -43,6 +43,6 @@ hl(fileNames)
   })
   .each(([account, rows]) => {
     hl(rows).pipe(csvStringify({ columns, header: true }))
-      .pipe(fs.createWriteStream(path.join(__dirname, `_OUTPUT/property-transfers-${account}.csv`)));
+      .pipe(fs.createWriteStream(path.join(__dirname, `_OUTPUT/property-transfer-transactions-${account}.csv`)));
   });
 
