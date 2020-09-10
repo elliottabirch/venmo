@@ -19,6 +19,7 @@ const venmoHeaders = [
   'beg balance',
   'Ending Balance',
   'Statement Period Venmo Fees',
+  "terminal Location",
   'Year to Date Venmo Fees',
   'Disclaimer',
 ];
