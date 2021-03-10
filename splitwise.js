@@ -6,7 +6,7 @@ const {splitWiseHeaders, SOURCE_ROOT_PATH} = require('./constants.js');
 
 module.exports = (fileType, fileName) => {
  return hl(fs.createReadStream(path.join(SOURCE_ROOT_PATH, fileName))
-  .pipe(csvParse({ relax_column_count: true, from: 2, columns: splitWiseHeaders, auto_parse: val => (!val ? undefined : val) }))).drop(2)
+  .pipe(csvParse({ relax_column_count: true, from: 3, columns: splitWiseHeaders, auto_parse: val => (!val ? undefined : val) }))).drop(2)
   .collect()
   .stopOnError((err) => {
     console.log(err);
